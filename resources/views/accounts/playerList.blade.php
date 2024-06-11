@@ -7,7 +7,7 @@
 </head>
 <body>
 <header class="p-3 text-bg-dark">
-    <h1>管理画面</h1>
+    <h1>プレイヤー一覧</h1>
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
@@ -17,14 +17,14 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="./index.php?action=userList" class="nav-link px-2 text-white">ユーザー一覧</a></li>
-                <li><a href="./index.php?action=player_list" class="nav-link px-2 text-secondary">プレイヤー一覧</a></li
-                <li><a href="./index.php?action=item_list" class="nav-link px-2 text-white">アイテム一覧</a></li>
-                <li><a href="./index.php?action=player_item_Possession"
+                <li><a href="/accounts/index" class="nav-link px-2 text-white">ユーザー一覧</a></li>
+                <li><a href="/accounts/playerList" class="nav-link px-2 text-secondary">プレイヤー一覧</a></li>
+                <li><a href="/accounts/itemList" class="nav-link px-2 text-white">アイテム一覧</a></li>
+                <li><a href="/accounts/playeritemList"
                        class="nav-link px-2 text-white">所持アイテム一覧</a></li>
             </ul>
             <div class="text-end">
-                <form method="post" action="{{url('accounts/login')}}">
+                <form method="post" action="{{url('accounts/dologout')}}">
                     @csrf
                     <button class="btn btn-warning btn btn-primary w-100 py-2" type="submit">ログアウト
                     </button>
@@ -36,13 +36,15 @@
 </header>
 <h1>プレイヤー一覧</h1>
 <table class="table table-bordered">
-    <tr>
-        <th>id</th>
-        <th>名前</th>
-        <th>レベル</th>
-        <th>経験値</th>
-        <th>ライフ</th>
+        @foreach($accounts as $player)
+        <tr>
+            <td>id:{{$player['id']}}</td>
+            <td>名前:{{$player['name']}}</td>
+            <td>レベル:{{$player['level']}}</td>
+            <td>経験値:{{$player['EXP']}}</td>
+            <td>ライフ{{$player['life']}}</td>
     </tr>
+        @endforeach
 </table>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"

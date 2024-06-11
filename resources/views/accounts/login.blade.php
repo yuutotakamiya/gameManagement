@@ -110,7 +110,7 @@
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
 <main class="form-signin w-100 m-auto">
     <h1>ログイン</h1>
-    <form method="post" action="{{url('accounts/login')}}">
+    <form method="post" action="{{url('/')}}">
         @csrf
         <div class="form-floating">
             <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="name">

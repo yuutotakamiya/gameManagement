@@ -8,6 +8,7 @@ use function Laravel\Prompts\password;
 class LoginController extends Controller
 {
     public function dologin(Request $request){
+        $request->session()->put('login',true);
         if($request['name']=='jobi'||$request['password']=='jobi'){
             return redirect('accounts/gameManagement');
         }
@@ -17,12 +18,10 @@ class LoginController extends Controller
     }
 
     //ログアウトする
-    public function logout()
+    public function dologout(Request $request)
     {
-        session_start();
-        session_destroy();
-        $_SESSION = [];
-        return redirect('accounts/login');
-        //header('Location: ./index.php');
+        $request->session()->forget('login');
+        $request->session()->flush();
+        return redirect('/');
     }
 }
